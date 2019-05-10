@@ -1,0 +1,51 @@
+/*custom style*/
+/*judul aplikasi*/
+@font-face {
+  font-family: fontBook;
+  src: url(BOOKOSB.TTF);
+}
+#judul {
+	font-family: fontBook;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#orderan {
+	margin: 4px 2px;
+	background-color: #eee;
+}
+
+#laporan_hc {
+	margin: 4px 2px;
+	background-color: #ddd;
+}
+
+#konten {
+	text-align: center;
+}
+
+#konten img {
+	width: 100px;
+}
+
+#konten p {
+	margin-top: 1px;
+	font-size: 18px;
+}
+
+/*form style*/
+#no_invoice {
+	padding: 8px;
+    border: none;
+    width: 75%;
+	border-bottom: 1px solid #ccc
+}
+
+#kirim {
+	margin-top: 10px;
+    color: #fff!important;
+    background-color: #2196F3!important;
+	border: none;
+    display: inline-block;
+    padding: 8px 25px;
+}

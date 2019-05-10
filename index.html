@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/onsenui.css">
+  <link rel="stylesheet" href="css/onsen-css-components.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/onsenui.min.js"></script>
+  <script src="js/script.js"></script>
+</head>
+<body>
+    <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+    <!-- template awal -->
+    <template id="page1.html">
+        <ons-page id="page1">
+          <ons-toolbar>
+            <div class="center" id="judul"><img style="width: 20px; margin-right: 5px; margin-bottom: -3px;" src="images/logo.png" /><span style="color: red;">PANDAWA</span><span style="color: blue;">24JAM</span></div>
+          </ons-toolbar>
+
+          <ons-row>
+            <ons-col style="width: 50%" height="75px" id="daftar">
+                <a style="text-decoration: none;" href="#">
+                <ons-card style="text-align: center; background-color: #0277bd; padding: 5px 10px;" id="web" modifier="material" class="card card--material">
+                    <img src="images/daftar.png" alt="Onsen UI" style="width: 35px;">
+                    <p style="margin-top: 1px; font-size: 10px; color: #fff;">RELOAD</p>
+                </ons-card>
+                </a>
+            </ons-col>                
+            <ons-col style="width: 50%" height="75px" id="cari">
+                <a style="text-decoration: none;" href="#">
+                <ons-card style="text-align: center;background-color: #de3333; padding: 5px 10px;" id="web" modifier="material" class="card card--material">
+                    <img src="images/search.png" alt="Onsen UI" style="width: 35px;">
+                    <p style="margin-top: 1px; font-size: 10px; color: #fff;">CARI BARANG</p>
+                </ons-card>
+                </a>
+            </ons-col>
+          </ons-row>
+          <ons-row>              
+            <ons-col style="width: 50%" height="75px" id="mesin">
+                <a style="text-decoration: none;" href="#">
+                <ons-card style="text-align: center;background-color: #00838f; padding: 5px 10px;" id="web" modifier="material" class="card card--material">
+                    <img src="images/mesin.png" alt="Onsen UI" style="width: 35px;">
+                    <p style="margin-top: 1px; font-size: 10px; color: #fff;">HC P24</p>
+                </ons-card>
+                </a>
+            </ons-col>
+            <ons-col style="width: 50%" height="75px" id="mitra">
+                <a style="text-decoration: none;" href="#">
+                <ons-card style="text-align: center;background-color: #69b334; padding: 5px 10px;" id="web" modifier="material" class="card card--material">
+                    <img src="images/mesin.png" alt="Onsen UI" style="width: 35px;">
+                    <p style="margin-top: 1px; font-size: 10px; color: #fff;">HC MITRA</p>
+                </ons-card>
+                </a>
+            </ons-col>  
+          </ons-row>
+
+          <!-- layout1 -->
+          <ons-card id="daftar_orderan" style="margin-top: 5px;">
+            <ons-list>
+              <ons-lazy-repeat id="infinite-list"></ons-lazy-repeat>
+            </ons-list>
+          </ons-card>
+
+        </ons-page>
+    </template>
+
+    <!-- loading -->
+    <ons-modal id="modalloading">
+      <ons-icon size="30px" spin icon="md-spinner"></ons-icon>
+      <br><br>
+      Silahkan tunggu...
+    </ons-modal>
+
+    <!-- template kosong -->
+    <template id="dialog.html">
+      <ons-dialog id="error-invoice">
+        <div style="text-align: center; padding: 25px; height: 200px;">
+          <img src="images/cancel.png" style="width: 100px;">
+          <p>Mohon Isi Nomor Invoice</p>
+          <ons-button onclick="hideDialog('error-invoice')">Tutup</ons-button>
+        </div>
+      </ons-dialog>
+    </template>
+  
+    <!-- template tidak ditemukan-->
+    <template id="kosong.html">
+      <ons-dialog id="kosong-invoice">
+        <div style="text-align: center; padding: 25px; height: 200px">
+          <img src="images/box.png" style="width: 100px;">
+          <p>No Invoice Tidak Terdaftar</p>
+          <ons-button onclick="hideDialog('kosong-invoice')">Coba Kembali</ons-button>
+        </div>
+      </ons-dialog>
+    </template>
+
+    <!-- template cari invoice -->
+    <template id="page2.html">
+      <ons-page id="page2">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+          <div class="center" id="judul"><img style="width: 20px; margin-right: 5px; margin-bottom: -3px;" src="images/logo.png" /><span style="color: red;">PANDAWA</span><span style="color: blue;">24JAM</span></div>
+        </ons-toolbar>
+
+        <ons-card id="konten">
+          <img src="images/search.png" alt="Cari Invoice">
+          <p>CARI STATUS ORDERAN</p>
+          <input type="number" name="no_invoice" id="no_invoice" placeholder="No Invoice"><br>
+          <input type="submit" name="kirim" id="kirim" onclick="senddata()" value="KIRIM">
+        </ons-card>
+      
+      </ons-page>
+    </template>
+
+    <!-- template mesin -->
+    <template id="page3.html">
+      <ons-page id="page3">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+          <div class="center" id="judul"><img style="width: 20px; margin-right: 5px; margin-bottom: -3px;" src="images/logo.png" /><span style="color: red;">PANDAWA</span><span style="color: blue;">24JAM</span></div>
+        </ons-toolbar>
+
+        <ons-card id="realtimehc">
+          <p><b>REALTIME HC : </b></p>
+          <ons-list>
+            <ons-lazy-repeat id="infinite-listmesin"></ons-lazy-repeat>
+          </ons-list>
+        </ons-card>
+      </ons-page>
+    </template>
+
+    <!-- template mesin -->
+    <template id="page4.html">
+      <ons-page id="page4">
+        <ons-toolbar>
+          <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+          <div class="center" id="judul"><img style="width: 20px; margin-right: 5px; margin-bottom: -3px;" src="images/logo.png" /><span style="color: red;">PANDAWA</span><span style="color: blue;">24JAM</span></div>
+        </ons-toolbar>
+
+        <ons-card id="realtimemitra">
+          <p><b>REALTIME MITRA : </b></p>
+          <ons-list>
+            <ons-lazy-repeat id="infinite-listmitra"></ons-lazy-repeat>
+          </ons-list>
+      </ons-card>
+      </ons-page>
+    </template>
+
+</body>
+</html>
